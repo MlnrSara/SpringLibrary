@@ -23,8 +23,9 @@ public class BookServiceImpl implements BookService{
     }
 
     @Override
-    public void deleteBook(Book book) {
-        bookRepository.delete(book);
+    public void deleteBookById(Long id) {
+        Optional<Book> book = bookRepository.findById(id);
+        book.ifPresent(bookRepository::delete);
     }
 
     @Override
