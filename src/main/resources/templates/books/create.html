@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org/">
+
+<head th:replace="~{fragments :: head}"></head>
+
+<body>
+<div class="header" th:replace="~{fragments :: header}"></div>
+<form method = "post" th:action="@{/books/create}">
+    <div>
+        <label>Title
+            <input th:field="${book.title}">
+        </label>
+        <p th:errors="${book.title}"></p>
+    </div>
+    <div>
+        <label>Author
+            <input th:field="${book.author}">
+        </label>
+        <p th:errors="${book.author}"></p>
+    </div>
+    <div>
+        <label>Initial quantity
+            <input th:field="${book.quantity}">
+        </label>
+        <p th:errors="${book.quantity}"></p>
+    </div>
+    <div>
+        <input type="submit" value="Insert book">
+    </div>
+</form>
+
+<div th:replace="~{fragments :: footer}"></div>
+</body>
+</html>
