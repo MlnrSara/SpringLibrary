@@ -11,8 +11,10 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
+import java.util.Optional;
 
 @Controller
 @RequiredArgsConstructor
@@ -43,6 +45,24 @@ public class BookController {
             return "books/create";
         }
         bookService.saveBook(newBook);
+        return "redirect:/books";
+    }
+
+    @GetMapping("/books/details")
+    public String displayEventDetails(@RequestParam Long bookId, Model model){
+        Optional<Book> result = bookService.findById(bookId);
+        if(result.isEmpty()){
+            model.addAttribute("title", "Event doesn't exist in the database");
+        } else {
+            Book book = result.get();
+            model.addAttribute("book", book);
+        }
+        return "books/details";
+    }
+
+    @PostMapping("/books/delete")
+    public String deleteBook(@RequestParam Long id){
+        bookService.deleteBookById(id);
         return "redirect:/books";
     }
 }

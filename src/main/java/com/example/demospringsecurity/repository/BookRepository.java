@@ -1,8 +1,6 @@
 package com.example.demospringsecurity.repository;
 
 import com.example.demospringsecurity.model.Book;
-import com.example.demospringsecurity.model.User;
-import org.springframework.data.jpa.repository.EntityGraph;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

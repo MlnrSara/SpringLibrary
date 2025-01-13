@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org/">
+<head th:replace="fragments :: head"></head>
+<body class="container">
+
+<header th:replace="fragments :: header"></header>
+<table class="table table-striped">
+    <tr>
+        <th>Author</th>
+        <td th:text="${book.author}"></td>
+    </tr>
+    <tr>
+        <th>Quantity available</th>
+        <td th:text="${book.quantity}"></td>
+    </tr>
+</table>
+<div>
+    <form th:action="@{/books/delete}" method="post">
+        <input type="hidden" name="id" th:value="${book.id}">
+        <input type="submit" value="Delete book">
+    </form>
+</div>
+
+</body>
+</html>
