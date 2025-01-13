@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org/" xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
+
+<head th:replace="~{fragments :: head}"></head>
+
+<body>
+<div class="header" th:replace="~{fragments :: header}"></div>
+<p th:unless="${books} and ${books.size()}">No books available!</p>
+<p><a href="/books/create"><span sec:authorize="isAuthenticated() and hasAuthority('ADMIN')">Insert new book</span></a></p>
+<div class = "body">
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th>Title</th>
+            <th>Author</th>
+            <th>Quantity</th>
+        </tr>
+        </thead>
+        <tr th:each="book : ${books}">
+            <td th:text="${book.title}"></td>
+            <td th:text="${book.author}"></td>
+            <td th:text="${book.quantity}"></td>
+        </tr>
+
+    </table>
+</div>
+
+<div th:replace="~{fragments :: footer}"></div>
+</body>
+</html>
