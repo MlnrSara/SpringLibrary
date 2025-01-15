@@ -31,6 +31,7 @@ public class SecurityConfig {
                     authConfig.requestMatchers(HttpMethod.GET, "/users").hasAnyAuthority("ADMIN", "DEVELOPER");
                     authConfig.requestMatchers(HttpMethod.GET, "/authorities").hasAnyAuthority("ADMIN", "DEVELOPER");
                     authConfig.requestMatchers(HttpMethod.POST, "/books/create").hasAnyAuthority("ADMIN");
+                    authConfig.requestMatchers(HttpMethod.POST, "/books/delete").hasAnyAuthority("ADMIN");
                     authConfig.anyRequest().authenticated();
                 })
                 .formLogin(login -> {

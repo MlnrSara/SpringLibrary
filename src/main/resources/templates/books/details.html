@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="https://www.thymeleaf.org/">
+<html lang="en" xmlns:th="https://www.thymeleaf.org/" xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
 <head th:replace="fragments :: head"></head>
 <body class="container">
 
@@ -15,10 +15,12 @@
     </tr>
 </table>
 <div>
+    <span sec:authorize="isAuthenticated() and hasAuthority('ADMIN')">
     <form th:action="@{/books/delete}" method="post">
         <input type="hidden" name="id" th:value="${book.id}">
         <input type="submit" value="Delete book">
     </form>
+    </span>
 </div>
 
 </body>
